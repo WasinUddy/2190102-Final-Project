@@ -1,0 +1,102 @@
+h1 {
+    color: #000000;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 60px;
+    text-align: center;
+}
+
+
+#container {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+#composite-container {
+    display: inline-block; /* Display the composite container inline */
+    border: 2px solid black; /* Solid border around the composite container */
+    padding: 0px;
+}
+
+#zip, #search {
+    display: inline-block; /* Display input and button inline */
+    vertical-align: top; /* Aligns them at the top */
+    padding: 0px;
+    margin: 0px;
+    border: none; /* Remove individual border if any */
+}
+
+#zip {
+    height: 60px;
+    width: 350px;
+    font-size: 40px;
+    border-right: none; /* Remove right border to make them stick together */
+}
+
+#zip:focus {
+    outline: none;
+}
+
+#search {
+    height: 60px;
+    width: 60px;
+    font-size: 40px;
+    cursor: pointer;
+    background-color: #4CAF50;
+}
+
+
+
+.weather-widget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: lightgray; /* You can adjust the color to match the exact tone */
+    padding: 20px;
+    border-radius: 20px;
+    color: #333;
+    font-family: 'Ubuntu', sans-serif; /* You can change the font to any other sans-serif font */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20px;
+}
+
+.weather-content {
+    display: flex;
+    align-items: center;
+}
+
+.temperature {
+    font-size: 3em; /* Increased font size */
+    font-weight: bold;
+    margin-right: 20px; /* Add some space between the temperature and the icon */
+}
+
+.weather-condition {
+    font-size: 3em;
+    text-align: center; /* Center the weather condition text under the icon */
+    margin-top: -10px; /* Adjust the space between the icon and the text */
+}
+
+
+.weather-icon {
+    margin: 0 15px;
+}
+
+.location {
+    font-size: 1.2em;
+    margin-top: 20px; /* Space from the temperature */
+}
+
+.material-symbols-outlined {
+    font-feature-settings: 'liga';
+    font-size: 48px; /* Adjust as needed */
+}
+
+#weather-embed {
+    /* Initially hide the weather embed */
+    display: none;
+    /* ... rest of your styles for #weather-embed ... */
+}
+
