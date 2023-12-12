@@ -1,67 +1,62 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+// Define constants for API key and URL
+const API_KEY = "UWv3mHahqeYAeSmA9808ydvFrva11ywbdVletsQk";
+const API_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?api_key=" + API_KEY;
 
-    // Search button
-    const searchButton = document.getElementById('search');
-    searchButton.addEventListener('click', () => {
-        const zipCode = document.getElementById('zip').value;
+/**
+ * Fetches and displays a random image from Mars Rover API.
+ * 
+ * @param {number} sol - The Martian sol (day) to fetch the images from.
+ * @param {string} camera - The camera type to fetch images from.
+ */
+async function setImage(sol, camera) {
+    const url = API_URL + "&sol=" + sol + "&camera=" + camera;
+    const response = await fetch(url); // Fetch data from API
+    const data = await response.json(); // Convert response to JSON
+    
+    // Count the number of images received
+    const count = data.photos.length;
+    const element = document.getElementById("output-picture");
 
-        // Fetch weather data
-        fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},TH&appid=fe93eb04b1573567c607d9987ca75260`)
-            .then(response => response.json())
-            .then(data => displayWeather(data))
-            .catch(error => console.log(error));
-    })
-})
-
-function displayWeather(data) {
-    const weatherEmbed = document.getElementById('weather-embed');
-
-    weatherEmbed.style.display = 'flex';
-
-    // Clear previous weather data
-    weatherEmbed.innerHTML = '';
-
-    if (data.weather && data.main && data.name && data.coord) {
-        // Create elements for weather data
-        const locationName = document.createElement('h2');
-        locationName.textContent = `${data.name}, Lat ${data.coord.lat}, Lon ${data.coord.lon}`;
-
-        const temp = document.createElement('div');
-        temp.className = 'temperature';
-        temp.textContent = `${Math.floor(data.main.temp - 273)}°C`;
-
-        const weatherCondition = document.createElement('div');
-        weatherCondition.className = 'weather-condition';
-        weatherCondition.textContent = data.weather[0].main;
-
-        const icon = document.createElement('span');
-        icon.className = "material-symbols-outlined weather-icon";
-        icon.style.fontSize = "64px"; // Larger icon size
-
-        // Choose an icon based on the weather condition
-        switch (data.weather[0].main.toLowerCase()) {
-            case 'clear':
-                icon.textContent = 'wb_sunny';
-                break;
-            case 'clouds':
-                icon.textContent = 'cloud';
-                break;
-            case 'rain':
-                icon.textContent = 'umbrella';
-                break;
-            case 'snow':
-                icon.textContent = 'ac_unit';
-                break;
-            default:
-                icon.textContent = 'wb_cloudy';
-        }
-
-        // Append elements to the weather embed container
-        weatherEmbed.appendChild(icon);
-        weatherEmbed.appendChild(weatherCondition); // Weather condition is now below the icon
-        weatherEmbed.appendChild(temp);
-        weatherEmbed.appendChild(locationName);
+    // Handle case with no images
+    if (count === 0) {
+        element.style.backgroundImage = "none"; // Clear previous image
+        // Display a 'no photography' icon if no images are available
+        element.innerHTML = "<span class='material-symbols-outlined'>no_photography</span>";
     } else {
-        weatherEmbed.textContent = 'Weather information not available.';
+        console.log("Found " + count + " images");
+
+        // Select a random image from the list
+        const random = Math.floor(Math.random() * count);
+        const img = data.photos[random].img_src;
+
+        // Update the background image and clear any previous content
+        element.style.backgroundImage = "url('" + img + "')";
+        element.innerHTML = "";
     }
 }
+
+// Initial call to setImage when the script loads
+setImage(1000, "FHAZ");
+
+// Event Listener for DOM Content Loaded
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Initial image set on page load
+    setImage(1000, "FHAZ");
+
+    // Event listener for the query button
+    const queryButton = document.getElementById('submit-btn');
+    queryButton.addEventListener('click', function() {
+        // Fetching user inputs for rover camera and sol
+        const roverCam = document.getElementById('rover-cam').value;
+        const roverSol = document.getElementById('rover-sol').value;
+
+        // Validate the roverSol value
+        if(roverSol < 0 || roverSol > 1000) {
+            alert("Rover Sol must be between 0 and 1000");
+            return;
+        }
+
+        // Fetch and display image based on user inputs
+        setImage(roverSol, roverCam);
+    });
+});

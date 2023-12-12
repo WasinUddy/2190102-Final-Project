@@ -1,102 +1,115 @@
-h1 {
-    color: #000000;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 60px;
-    text-align: center;
+/* General Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevents scrollbars from appearing */
+    font-family: 'Orbitron', sans-serif; /* Sets the default font */
 }
 
-
-#container {
-    text-align: center;
-    margin: 0px;
-    padding: 0px;
+/* Background Image Styling */
+.background-image {
+    background-image: url("../images/shutterstock_1983173993.jpg"); /* URL of the background image */
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw; /* Full width of the viewport */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* No repeating of the image */
+    background-size: cover; /* Scales the image to cover the container */
 }
 
-#composite-container {
-    display: inline-block; /* Display the composite container inline */
-    border: 2px solid black; /* Solid border around the composite container */
-    padding: 0px;
-}
-
-#zip, #search {
-    display: inline-block; /* Display input and button inline */
-    vertical-align: top; /* Aligns them at the top */
-    padding: 0px;
-    margin: 0px;
-    border: none; /* Remove individual border if any */
-}
-
-#zip {
-    height: 60px;
-    width: 350px;
-    font-size: 40px;
-    border-right: none; /* Remove right border to make them stick together */
-}
-
-#zip:focus {
-    outline: none;
-}
-
-#search {
-    height: 60px;
-    width: 60px;
-    font-size: 40px;
-    cursor: pointer;
-    background-color: #4CAF50;
-}
-
-
-
-.weather-widget {
+/* Main Container Styles */
+.main-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: lightgray; /* You can adjust the color to match the exact tone */
-    padding: 20px;
-    border-radius: 20px;
-    color: #333;
-    font-family: 'Ubuntu', sans-serif; /* You can change the font to any other sans-serif font */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 20px;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
 }
 
-.weather-content {
+/* Header Style */
+.main-container h1 {
+    background-color: rgba(0, 0, 0, 1); /* Solid black background */
+    color: white; /* White text color */
+    text-align: center; /* Center aligns the text */
+    font-size: 3.5rem; /* Sets the font size */
+}
+
+/* Interactive Container Styles */
+.interact-container {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center; /* Horizontally centers children */
+    align-items: center; /* Vertically centers children */
 }
 
-.temperature {
-    font-size: 3em; /* Increased font size */
-    font-weight: bold;
-    margin-right: 20px; /* Add some space between the temperature and the icon */
+/* Styles for Iframe in Interactive Container */
+.interact-container iframe {
+    width: 33vw; /* Sets width to 33% of viewport width */
+    height: 33vw; /* Sets height equal to its width */
 }
 
-.weather-condition {
-    font-size: 3em;
-    text-align: center; /* Center the weather condition text under the icon */
-    margin-top: -10px; /* Adjust the space between the icon and the text */
+/* General Styles for Divs in Interactive Container */
+.interact-container div {
+    width: 33vw; /* Sets width to 33% of viewport width */
+    height: 33vw; /* Sets height equal to its width */
 }
 
-
-.weather-icon {
-    margin: 0 15px;
+/* Output Picture Styles */
+#output-picture {
+    background-color: #333; /* Dark gray background */
+    background-size: contain; /* Image should be contained within the element */
+    display: flex;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
 }
 
-.location {
-    font-size: 1.2em;
-    margin-top: 20px; /* Space from the temperature */
+/* Style for Span Inside Output Picture */
+#output-picture span {
+    color: white; /* White text color */
+    font-size: 100px; /* Large font size */
+    display: block; /* Block level element */
 }
 
-.material-symbols-outlined {
-    font-feature-settings: 'liga';
-    font-size: 48px; /* Adjust as needed */
+/* User Input Container Styles */
+.user-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+    background-color: #f0f0f0; /* Light gray background */
+    width: 33vw; /* Sets width to 33% of viewport width */
+    height: 33vw; /* Sets height equal to its width */
 }
 
-#weather-embed {
-    /* Initially hide the weather embed */
-    display: none;
-    /* ... rest of your styles for #weather-embed ... */
+/* Label Styles in User Input */
+.user-input label {
+    font-size: 1.7em; /* Large font size for labels */
+    margin-bottom: 10px; /* Spacing below the label */
+    color: #333; /* Dark gray text color */
 }
 
+/* Styles for Select and Number Input */
+.user-input select, .user-input input[type="number"] {
+    width: 90%; /* Occupies most of the container width */
+    margin-bottom: 20px; /* Spacing below the element */
+    border: 1px solid #ddd; /* Light gray border */
+    font-size: 1.2em; /* Sets font size */
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    color: #333; /* Dark gray text color */
+}
+
+/* Style to Remove Inner Spin Button from Number Input */
+.user-input input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Hides the default spin button */
+}
+
+/* Button Styles in User Input */
+.user-input button {
+    width: 90%; /* Occupies most of the container width */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.2em; /* Sets font size */
+    background-color: #333; /* Dark gray background */
+    color: #fff; /* White text color */
+    border: none; /* No border */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
