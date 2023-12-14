@@ -89,7 +89,7 @@ html, body {
 /* Styles for Select and Number Input */
 .user-input select, .user-input input[type="number"] {
     width: 90%; /* Occupies most of the container width */
-    margin-bottom: 20px; /* Spacing below the element */
+    margin-bottom: 10px; /* Spacing below the element */
     border: 1px solid #ddd; /* Light gray border */
     font-size: 1.2em; /* Sets font size */
     padding-top: 0.25rem;
