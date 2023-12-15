@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('submit-btn').addEventListener('click', fetchRoverPhotos);
     const roverSelect = document.getElementById('rover-name');
     const camera = document.getElementById('rover-cam');
     roverSelect.addEventListener('change', (event) => {
@@ -42,3 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+async function fetchRoverPhotos() {
+    const roverName = document.getElementById('rover-name').value;
+    const camera = document.getElementById('rover-cam').value;
+    const sol = document.getElementById('rover-sol').value;
+
+    const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${roverName}/photos?sol=${sol}&camera=${camera}&api_key=DEMO_KEY`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    console.log(data.photos);
+
+    if (data.photos.length === 0) {
+        console.log('No photos found');
+        const outputContainer = document.getElementById('output-picture');
+        
+        // Set background image
+        outputContainer.style.backgroundImage = "none";
+        outputContainer.innerHTML = "<span class='material-symbols-outlined'>no_photography</span>"
+    } else {
+        // Get random photo
+        const randomPhoto = data.photos[Math.floor(Math.random() * data.photos.length)];
+        
+        // Set background image
+        const outputContainer = document.getElementById('output-picture');
+        outputContainer.innerHTML = "";
+        outputContainer.style.backgroundImage = `url(${randomPhoto.img_src})`;
+    }
+}
