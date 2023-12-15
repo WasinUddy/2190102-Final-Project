@@ -11,6 +11,7 @@ MarsWatcher allows users to interactively select a Mars rover, choose a camera, 
 - CSS
 - JavaScript
 - NASA Mars Rover Photos API
+- GitHub Pages and GitHub Actions for CI/CD
 
 ## Implementation Details
 
@@ -44,6 +45,9 @@ Each Mars rover is equipped with a unique set of cameras, offering different per
 | Curiosity   | FHAZ, RHAZ, MAST, CHEMCAM, MAHLI, MARDI, NAVCAM |
 | Opportunity | FHAZ, RHAZ, NAVCAM, PANCAM, MINITES |
 | Spirit      | FHAZ, RHAZ, NAVCAM, PANCAM, MINITES |
+
+## CI/CD Pipeline
+The MarsWatcher application is hosted on GitHub Pages, with a CI/CD pipeline implemented using GitHub Actions. The pipeline is triggered by a push to the `main` branch of the GitHub repository, to start deploying static HTML, CSS, and JavaScript files to a GitHub Pages site(https://wasinuddy.github.io/2190102-Final-Project/). As the project does not require any self-hosted servers or databases, GitHub Pages provides a simple and convenient solution for hosting the application.
 
 ## Acknowledgements
 I would like to extend my sincere gratitude to Asst. Prof. Sukree Sinthupinyo, Ph.D., for his invaluable guidance and support throughout the course. His expertise and insights have been instrumental in the successful completion of this project.
